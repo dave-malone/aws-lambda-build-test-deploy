@@ -3,17 +3,18 @@
 console.log('Loading function');
 
 const aws = require('aws-sdk');
-const s3 = new aws.S3({ apiVersion: '2006-03-01' });
-const ets = new aws.ElasticTranscoder();
 
-const config = {
-    pipeline_id: process.env.PIPELINE_ID,
-    output_folder: process.env.OUTPUT_FOLDER,
-    output_key_prefix: process.env.OUTPUT_KEY_PREFIX,
-    output_preset_id: process.env.OUTPUT_PRESET_ID
-}
 
 const submitTranscodingJob = (object_key) => {
+    const config = {
+        pipeline_id: process.env.PIPELINE_ID,
+        output_folder: process.env.OUTPUT_FOLDER,
+        output_key_prefix: process.env.OUTPUT_KEY_PREFIX,
+        output_preset_id: process.env.OUTPUT_PRESET_ID
+    }
+    const ets = new aws.ElasticTranscoder();
+
+
     console.log(`submitting transcoding job for object ${object_key}`)
     var params = {
         PipelineId: config.pipeline_id,
@@ -39,6 +40,11 @@ const submitTranscodingJob = (object_key) => {
 }
 
 exports.handler = (event, context, callback) => {
+    // const s3 = new aws.S3({ apiVersion: '2006-03-01' });
+
+
+
+
     console.log('Received event:', JSON.stringify(event, null, 2));
 
     // Get the object from the event and show its content type
