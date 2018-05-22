@@ -1,3 +1,3 @@
-# S3 MP4 Transcoder Lambda function
+# aws-lambda-build-test-deploy
 
-A simple function used to demonstrate Lambda 
+A simple project to illustrate how to build and test Lambda using contemporary engineering practices, including unit tests, continuous integration and continuous deployment. 
